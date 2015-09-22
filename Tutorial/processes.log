@@ -1,0 +1,6 @@
+  PID TTY          TIME CMD
+ 3005 pts/1    00:00:00 bash
+ 3856 pts/1    00:00:00 nano
+ 4266 pts/1    00:00:00 nano
+ 4282 pts/1    00:00:00 question_5.sh
+ 4295 pts/1    00:00:00 ps
