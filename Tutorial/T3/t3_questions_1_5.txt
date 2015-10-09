@@ -1,0 +1,124 @@
+//question 1
+#include <stdlib.h>
+#include <stdio.h>
+
+int main(void)
+{
+	char fname[10];
+	int age, height;
+	printf("Enter your first name, age and height:");
+	scanf("%s %d %d", fname, &age, &height);
+	printf("First name: %s, Age: %d, Height: %d \n",fname, age, height);
+}
+
+//question 2
+#include <stdlib.h>
+#include <stdio.h>
+
+int main(void)
+{
+	int ar[10];
+	FILE *fp = fopen("question2.txt", "r");
+	//for (int i = 0; i < 10; i++)
+		fscanf(fp, "%d", &ar[i]); 
+	fclose(fp);
+	for (int i = 0; i < 10; i++)
+		printf("%d \n", ar[i]);
+}
+
+//question 3
+
+#include <stdlib.h>
+#include <stdio.h>
+
+typedef struct {
+	int id, age, year; 
+} student;
+
+void save_student(student s) {
+	FILE *fp = fopen("students.txt", "a");
+	fprintf(fp, "%d,%d,%d \n", s.id, s.age, s.year);
+	fclose(fp);
+}
+
+int main() {
+	student s;
+	printf("Enter your student id: ");
+	scanf("%d", &s.id);
+	printf("Enter your age: ");
+	scanf("%d", &s.age);
+	printf("Enter the year you start at UOIT: ");
+	scanf("%d", &s.year);
+	save_student(s);
+}
+
+//question 4
+
+#include <stdlib.h>
+#include <stdio.h>
+
+int main() {
+	char *professor;
+	int *student_ids, *grades;
+	int num_students;
+	professor = (char *) calloc(256, sizeof(char));
+	printf("Enter your name: ");
+	scanf("%s", professor);
+	printf("Enter the number of students to mark: ");
+	scanf("%d", &num_students);
+	student_ids = (int *) malloc(sizeof(int));
+	grades = (int *) malloc(sizeof(int));
+	free(professor), free(student_ids), free(grades);
+	
+}
+
+//question 5
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
+#define BUFFER 256
+
+typedef struct {
+	int student_id;
+	int mark;
+} grade;
+
+void grade_students(grade *grades, int num_students)  {
+	FILE *fp = fopen("grades.txt", "w");
+	int sum = 0;
+	for (int i = 0; i < num_students; i++) {
+		sum = sum + grades[i].mark;
+		fprintf(fp, "%d, %d \n", grades[i].student_id, grades[i].mark);
+	}
+	double avg = sum / num_students;
+	int std_sum = 0; 
+	double std = 0;
+	for (int i = 0; i<num_students; i++)  {
+		std_sum = std_sum + pow((grades[i].mark - avg),2);
+	}
+	
+	std = sqrt(std_sum/(num_students-1));
+	fprintf(fp, "Average: %lf, Standard deviation: %lf", avg, std);
+}
+
+int main() {
+	char *professor;
+	grade *grades;
+	int num_students;
+	professor = (char *) calloc(BUFFER, sizeof(char));
+	printf("Enter your name: ");
+	scanf("%s", professor);
+	printf("Enter the number of students to mark: ");
+	scanf("%d", &num_students);
+	grades = (grade *) malloc(num_students * sizeof(grade));
+	for (int i = 0; i < num_students; i++)
+	{
+	    printf("Enter the student id and the mark: ");
+	    scanf("%d %d", &grades[i].student_id, &grades[i].mark);
+	}
+	grade_students(grades, num_students);
+	free(professor), free(grades);
+	
+	
+}
