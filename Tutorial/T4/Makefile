@@ -1,7 +1,7 @@
 CC = clang
 CFLAGS = -Wall -Wextra -std=c99
 LFLAGS = 
-LIBS = 
+LIBS = -lm
 SOURCES = jeopardy.c questions.c players.c
 OBJECTS = $(subst .c,.o,$(SOURCES))
 EXE = jeopardy.exe

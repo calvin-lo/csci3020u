@@ -42,6 +42,9 @@ extern void initialize_game(void);
 // Displays each of the remaining categories and question dollar values that have not been answered
 extern void display_categories(void);
 
+// Return ture if the question exist.
+extern bool question_exist(char *category, int value);
+
 // Displays the question for the category and dollar value
 extern void display_question(char *category, int value);
 
